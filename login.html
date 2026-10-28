@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050816">
+
+    <title>BruteForceDefense | Secure Login</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body class="login-page">
+
+    <div class="cyber-grid"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+    <div class="scan-line"></div>
+
+    <main class="login-layout">
+
+        <section class="hero-section">
+            <a href="{{ url_for('login') }}" class="brand">
+                <span class="brand-logo">⬡</span>
+                <span>BRUTE<span class="cyan">FORCE</span>
+                    <small>DEFENSE SYSTEM / V1.0</small>
+                </span>
+            </a>
+
+            <div class="system-label">
+                <span class="status-dot"></span>
+                LOCAL SECURITY SYSTEM
+            </div>
+
+            <h1>DEFEND YOUR<br>
+                <span class="gradient-text">DIGITAL WORLD.</span>
+            </h1>
+
+            <p class="hero-description">
+                Detect suspicious login attempts. Monitor authentication
+                activity. Protect access with a temporary lockout system.
+            </p>
+
+            <div class="shield-stage">
+                <div class="shield-orbit orbit-a"></div>
+                <div class="shield-orbit orbit-b"></div>
+                <div class="shield-orbit orbit-c"></div>
+
+                <div class="shield-core">
+                    <svg viewBox="0 0 120 135" aria-label="Security shield">
+                        <path d="M60 5 L106 23 L101 70
+                                 C97 96 80 116 60 129
+                                 C40 116 23 96 19 70 L14 23 Z"
+                              fill="rgba(0,225,255,.08)"
+                              stroke="currentColor" stroke-width="3"/>
+                        <path d="M40 65 L54 79 L82 49"
+                              fill="none" stroke="currentColor"
+                              stroke-width="6" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+
+                <span class="orbit-tag tag-left">FIREWALL ACTIVE</span>
+                <span class="orbit-tag tag-right">ACCESS CONTROL</span>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <span class="feature-number">01</span>
+                    <div>
+                        <strong>ATTEMPT MONITORING</strong>
+                        <small>Track authentication events</small>
+                    </div>
+                </div>
+
+                <div class="feature-box">
+                    <span class="feature-number">02</span>
+                    <div>
+                        <strong>ACCOUNT PROTECTION</strong>
+                        <small>5 attempts / 60-second lockout</small>
+                    </div>
+                </div>
+
+                <div class="feature-box">
+                    <span class="feature-number">03</span>
+                    <div>
+                        <strong>SECURE VERIFICATION</strong>
+                        <small>Hashed password comparison</small>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="hero-footer">
+                <span>EDUCATIONAL CYBERSECURITY PROJECT</span>
+                <span>STATUS: <b>READY</b></span>
+            </footer>
+        </section>
+
+        <section class="login-section">
+            <div class="login-card">
+
+                <div class="card-status">
+                    <span class="status-dot"></span>
+                    SECURE AUTHENTICATION
+                </div>
+
+                <div class="card-icon">⌁</div>
+
+                <p class="eyebrow">IDENTITY VERIFICATION</p>
+                <h2>Welcome back<span class="cyan">.</span></h2>
+                <p class="form-description">
+                    Authenticate to open your security dashboard.
+                </p>
+
+                {% if message %}
+                <div class="alert {{ message_type }}" role="alert">
+                    <span>!</span>
+                    <p>{{ message }}</p>
+                </div>
+                {% endif %}
+
+                <form method="POST" action="{{ url_for('login') }}"
+                      class="login-form">
+
+                    <label for="username">USERNAME</label>
+                    <div class="input-box">
+                        <span class="input-icon">⌕</span>
+                        <input id="username" name="username"
+                               type="text" placeholder="Enter username"
+                               autocomplete="username" maxlength="50"
+                               required>
+                    </div>
+
+                    <label for="password">PASSWORD</label>
+                    <div class="input-box">
+                        <span class="input-icon">⌑</span>
+                        <input id="password" name="password"
+                               type="password" placeholder="Enter password"
+                               autocomplete="current-password" required>
+                        <button type="button" class="toggle-password"
+                                data-password-toggle
+                                aria-label="Show password">SHOW</button>
+                    </div>
+
+                    <button class="login-button" type="submit">
+                        <span>AUTHENTICATE</span>
+                        <span class="button-arrow">↗</span>
+                    </button>
+                </form>
+
+                <div class="security-note">
+                    <span class="security-symbol">◆</span>
+                    <div>
+                        <strong>Defense monitoring enabled</strong>
+                        <small>Login events are stored locally.</small>
+                    </div>
+                </div>
+
+                
+
+                <footer class="login-footer">
+                    LOCAL EDUCATIONAL DEMO · NOT FOR PUBLIC DEPLOYMENT
+                </footer>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

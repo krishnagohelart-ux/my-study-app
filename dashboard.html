@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050816">
+    <title>Security Dashboard | BruteForceDefense</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body class="dashboard-page">
+
+    <div class="cyber-grid"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+    <div class="scan-line"></div>
+
+    <div class="dashboard-layout">
+
+        <aside class="sidebar">
+            <a href="#overview" class="brand">
+                <span class="brand-logo">⬡</span>
+                <span>BRUTE<span class="cyan">FORCE</span>
+                    <small>DEFENSE SYSTEM</small>
+                </span>
+            </a>
+
+            <p class="sidebar-label">NAVIGATION</p>
+            <nav class="nav-menu">
+                <a href="#overview" class="nav-link active">▦ &nbsp; Overview</a>
+                <a href="#defenses" class="nav-link">⬡ &nbsp; Defenses</a>
+                <a href="#activity" class="nav-link">◷ &nbsp; Login Activity</a>
+                <a href="#about" class="nav-link">ⓘ &nbsp; About Project</a>
+            </nav>
+
+            <p class="sidebar-label">SYSTEM STATUS</p>
+            <div class="info-box">
+                <span class="status-dot"></span>
+                <strong class="green"> DEMO ACTIVE</strong>
+                <p>Local authentication monitoring.</p>
+            </div>
+
+            <div class="sidebar-bottom">
+                <span>BRUTEFORCEDEFENSE</span>
+                <p>Cybersecurity Project</p>
+                <p>Version 1.0</p>
+            </div>
+        </aside>
+
+        <main class="dashboard-main" id="overview">
+
+            <header class="dashboard-header">
+                <div>
+                    <p class="eyebrow">SECURITY CENTER / OVERVIEW</p>
+                    <h1>Dashboard<span class="cyan">.</span></h1>
+                    <p>Authentication monitoring and defense analytics.</p>
+                </div>
+
+                <div class="header-actions">
+                    <div class="user-chip">
+                        <span class="user-avatar">U</span>
+                        <div>
+                            <strong>{{ username }}</strong>
+                            <small class="green">● Authenticated</small>
+                        </div>
+                    </div>
+
+                    <form action="{{ url_for('logout') }}" method="POST">
+                        <button class="logout-btn" type="submit">↗ LOG OUT</button>
+                    </form>
+                </div>
+            </header>
+
+            <section class="metrics-grid">
+                <article class="metric-card cyan-card">
+                    <span class="metric-icon">◷</span>
+                    <p class="metric-label">TOTAL EVENTS</p>
+                    <h2 class="metric-value" data-count="{{ stats.total }}">
+                        {{ stats.total }}
+                    </h2>
+                    <p class="metric-foot">Recorded in SQLite</p>
+                </article>
+
+                <article class="metric-card red-card">
+                    <span class="metric-icon">!</span>
+                    <p class="metric-label">FAILED ATTEMPTS</p>
+                    <h2 class="metric-value" data-count="{{ stats.failed }}">
+                        {{ stats.failed }}
+                    </h2>
+                    <p class="metric-foot">Invalid credentials</p>
+                </article>
+
+                <article class="metric-card blue-card">
+                    <span class="metric-icon">⊘</span>
+                    <p class="metric-label">BLOCKED EVENTS</p>
+                    <h2 class="metric-value" data-count="{{ stats.blocked }}">
+                        {{ stats.blocked }}
+                    </h2>
+                    <p class="metric-foot">During account lockout</p>
+                </article>
+
+                <article class="metric-card green-card">
+                    <span class="metric-icon">✓</span>
+                    <p class="metric-label">SUCCESSFUL LOGINS</p>
+                    <h2 class="metric-value" data-count="{{ stats.successful }}">
+                        {{ stats.successful }}
+                    </h2>
+                    <p class="metric-foot">Valid authentication</p>
+                </article>
+            </section>
+
+            <section class="dashboard-grid" id="defenses">
+
+                <article class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">PROTECTION LAYER</p>
+                            <h2>SECURITY DEFENSES</h2>
+                        </div>
+                        <span class="status-pill">● ENABLED</span>
+                    </div>
+
+                    <div class="defense-item">
+                        <span class="defense-icon">01</span>
+                        <div class="defense-copy">
+                            <strong>Password Verification</strong>
+                            <p>Checks credentials against a password hash.</p>
+                        </div>
+                        <span class="defense-status">ON</span>
+                    </div>
+
+                    <div class="defense-item">
+                        <span class="defense-icon">02</span>
+                        <div class="defense-copy">
+                            <strong>Attempt Monitoring</strong>
+                            <p>Records successful and unsuccessful logins.</p>
+                        </div>
+                        <span class="defense-status">ON</span>
+                    </div>
+
+                    <div class="defense-item">
+                        <span class="defense-icon">03</span>
+                        <div class="defense-copy">
+                            <strong>Temporary Lockout</strong>
+                            <p>Locks an account after five failed attempts.</p>
+                        </div>
+                        <span class="defense-status">ON</span>
+                    </div>
+
+                    <div class="defense-item">
+                        <span class="defense-icon">04</span>
+                        <div class="defense-copy">
+                            <strong>Protected Dashboard</strong>
+                            <p>Requires an authenticated session.</p>
+                        </div>
+                        <span class="defense-status">ON</span>
+                    </div>
+                </article>
+
+                <article class="panel" id="about">
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">PROJECT DETAILS</p>
+                            <h2>DEFENSE OVERVIEW</h2>
+                        </div>
+                    </div>
+
+                    <div class="terminal-box">
+                        <div class="terminal-head">
+                            <span></span><span></span><span></span>
+                            <small>system_status.exe</small>
+                        </div>
+                        <div class="terminal-body">
+                            <p><span class="terminal-green">[OK]</span> Flask server</p>
+                            <p><span class="terminal-green">[OK]</span> SQLite logging</p>
+                            <p><span class="terminal-green">[OK]</span> Password hashing</p>
+                            <p><span class="terminal-green">[OK]</span> Lockout policy</p>
+                            <p class="terminal-muted">Environment: LOCAL DEMO</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Defense policy</strong>
+                        <p>Maximum 5 failed attempts, followed by a 60-second lockout.</p>
+                    </div>
+                </article>
+            </section>
+
+            <section class="panel activity-panel" id="activity">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">LIVE DATABASE VIEW</p>
+                        <h2>RECENT LOGIN ACTIVITY</h2>
+                    </div>
+                    <span class="status-pill">SQLITE LOG</span>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Event</th>
+                                <th>Status</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for event in activities %}
+                            <tr>
+                                <td>{{ event.username }}</td>
+                                <td>{{ event.event }}</td>
+                                <td>
+                                    {% if event.status == 'SUCCESS' %}
+                                        <span class="badge-success">SUCCESS</span>
+                                    {% elif event.status == 'BLOCKED' %}
+                                        <span class="badge-warning">BLOCKED</span>
+                                    {% else %}
+                                        <span class="badge-danger">FAILED</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ event.event_time }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="4" class="empty-state">
+                                    No activity recorded yet.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <footer class="page-footer">
+                <span>BRUTEFORCEDEFENSE / EDUCATIONAL PROJECT</span>
+                <span>LOCAL MODE · V1.0</span>
+            </footer>
+
+        </main>
+    </div>
+</body>
+</html>
